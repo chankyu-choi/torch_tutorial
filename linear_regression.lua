@@ -15,11 +15,11 @@ param, grad_param = model:getParameters()
 
 for i=1, 300 do
   O = model:forward(X)
-  loss = crit:forward(O, T)
+  l = crit:forward(O, T)
   
   grad_param:zero()
-  grad_loss = crit:backward(O, T)
-  model:backward(X, grad_loss)
+  dl_do = crit:backward(O, T)
+  model:backward(X, dl_do)
 
   model:updateParameters(0.01) 
   -- or param:add(-0.01, grad_param)
@@ -29,6 +29,6 @@ for i=1, 300 do
     print (O)
     
     print ("[loss]")
-    print (loss)   
+    print (l)   
   end
 end
